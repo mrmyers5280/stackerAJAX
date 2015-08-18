@@ -38,10 +38,10 @@ var showQuestion = function(question) {
 	// set some properties related to asker
 	var asker = result.find('.asker');
 	asker.html('<p>Name: <a target="_blank" href=http://stackoverflow.com/users/' + question.owner.user_id + ' >' +
-													question.owner.display_name +
-												'</a>' +
+							question.owner.display_name +
+							'</a>' +
 							'</p>' +
-							 '<p>Reputation: ' + question.owner.reputation + '</p>'
+							'<p>Reputation: ' + question.owner.reputation + '</p>'
 	);
 
 	return result;
@@ -68,9 +68,9 @@ var getUnanswered = function(tags) {
 
 	// the parameters we need to pass in our request to StackOverflow's API
 	var request = {tagged: tags,
-								site: 'stackoverflow',
-								order: 'desc',
-								sort: 'creation'};
+					site: 'stackoverflow',
+					order: 'desc',
+					sort: 'creation'};
 
 	var result = $.ajax({
 		url: "http://api.stackexchange.com/2.2/questions/unanswered",
