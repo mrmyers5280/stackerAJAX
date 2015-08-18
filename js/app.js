@@ -47,10 +47,25 @@ var showQuestion = function(question) {
 	return result;
 };
 
-var showInspiration = function() {
+var showInspiration = function(inspiration) {
 	// clone the new inspiration result template
+	var result = $('.templates .inspiration').clone();
 
 	// display the results of the search
+	// set the user name property in result
+	var inspirationElem = result.find('.inspiration-name a');
+	inspirationElem.attr('href', inspiration.user.link);
+	inspirationElem.text(inspiration.user.display_name);
+
+	// set the score property in result
+	var score = result.find('.inspiration-score');
+	score.text(inspiration.score);
+
+	// set the reputation property in result
+	var reputation = result.find('.inspiration-rep');
+	reputation.text(inspiration.user.reputation);
+
+	return result;
 };
 
 // this function takes the results object from StackOverflow
@@ -114,5 +129,9 @@ var getInspired = function(answerers) {
 	.done(function(result) {
 		var searchResults = showSearchResults(answerers, result.items.length);
 		$('.search-results').html(searchResults);
+		$.each(result.items, function(i, item) {
+			var question = showInspiration(item);
+			$('.results').append(question);
+		});
 	})
 };
