@@ -47,6 +47,11 @@ var showQuestion = function(question) {
 	return result;
 };
 
+var showInspiration = function() {
+	// clone the new inspiration result template
+
+	// display the results of the search
+};
 
 // this function takes the results object from StackOverflow
 // and creates info about search results to be appended to DOM
