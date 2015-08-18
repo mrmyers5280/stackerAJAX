@@ -9,7 +9,7 @@ $(document).ready( function() {
 	$('.inspiration-getter').submit( function(event) {
 		$('.results').html('');
 		var answerers = $(this).find('input[name="answerers"]').val();
-		// console.log('inspiration-getter clicked' + answerers);
+		console.log('inspiration-getter clicked ' + answerers);
 		getInspired(answerers);
 	});
 });
@@ -92,4 +92,18 @@ var getUnanswered = function(tags) {
 		var errorElem = showError(error);
 		$('.search-results').append(errorElem);
 	});
+};
+
+var getInspired = function(answerers) {
+	// the parameters we need to pass in our request to StackOverflow's API
+	var request = {site: 'stackoverflow'};
+	var period = 'all_time'; // can be either 'all_time' or 'month'
+	// build the url for the endpoint
+	var url = 'http://api.stackexchange.com/2.2/tags/' + answerers + '/top-answerers/' + period;
+	var result = $.ajax({
+		url: url,
+		data: request,
+		dataType: 'jsonp',
+		type: 'GET'
+	})
 };
