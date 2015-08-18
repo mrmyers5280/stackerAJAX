@@ -106,4 +106,8 @@ var getInspired = function(answerers) {
 		dataType: 'jsonp',
 		type: 'GET'
 	})
+	.done(function(result) {
+		var searchResults = showSearchResults(answerers, result.items.length);
+		$('.search-results').html(searchResults);
+	})
 };
